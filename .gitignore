@@ -167,3 +167,8 @@ coverage/
 *repomix*
 mcp-servers.json
 logs/
+
+# Cursor
+memory-bank/
+.cursor/
+

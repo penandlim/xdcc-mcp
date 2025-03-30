@@ -6,6 +6,8 @@ import { logger } from '../utils/logger.js';
 import { requestContextService } from "../utils/requestContext.js"; // Import the service
 import { registerEchoResource } from './resources/echoResource/index.js';
 import { registerEchoTool } from './tools/echoTool/index.js';
+import { registerGetDownloadStatusTool } from './tools/getDownloadStatusTool/index.js';
+import { registerInitiateDownloadTool } from './tools/initiateDownloadTool/index.js';
 
 /**
  * Creates, configures, and connects the main MCP server instance.
@@ -49,10 +51,14 @@ export const createMcpServer = async (): Promise<McpServer> => {
   try {
     logger.info("Registering resources and tools...", operationContext);
     // Pass the McpServer instance to the registration functions
-    await registerEchoResource(server);
-    logger.debug("Echo resource registered.", operationContext);
-    await registerEchoTool(server);
-    logger.debug("Echo tool registered.", operationContext);
+    // await registerEchoResource(server);
+    // logger.debug("Echo resource registered.", operationContext);
+    // await registerEchoTool(server);
+    // logger.debug("Echo tool registered.", operationContext);
+    await registerGetDownloadStatusTool(server);
+    logger.debug("Get Download Status tool registered.", operationContext);
+    await registerInitiateDownloadTool(server);
+    logger.debug("Initiate Download tool registered.", operationContext);
     logger.info("Resources and tools registered successfully.", operationContext);
   } catch (registrationError) {
      // ErrorHandler within registration functions should handle specific logging/throwing
